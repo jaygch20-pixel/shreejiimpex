@@ -17,8 +17,6 @@ api.interceptors.response.use(
   (error) => Promise.reject(error),
 );
 
-const multipart = { headers: { 'Content-Type': 'multipart/form-data' } };
-
 export const publicAPI = {
   getDesigns: (params) => api.get('/designs', { params }),
   getDesignBySlug: (slug) => api.get(`/designs/${encodeURIComponent(slug)}`),
@@ -28,7 +26,6 @@ export const publicAPI = {
   getAllContent: () => api.get('/content'),
   getContent: (section) => api.get(`/content/${encodeURIComponent(section)}`),
   submitEnquiry: (data) => api.post('/enquiries', data),
-  submitCustomRequest: (formData) => api.post('/custom-requests', formData, multipart),
 };
 
 export default api;

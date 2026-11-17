@@ -1,33 +1,26 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BadgeCheck, RefreshCw, UsersRound } from 'lucide-react';
+import { BadgeCheck, HeartHandshake, Sparkles } from 'lucide-react';
 import { coreValues, homeHeroImages } from '../data/siteData';
 import { publicAPI } from '../services/api';
 import { getOptimizedImageUrl } from '../services/imageUrl';
 
 const valueIcons = {
   integrity: BadgeCheck,
-  perseverance: RefreshCw,
-  loyalty: UsersRound,
+  customizable: Sparkles,
+  satisfaction: HeartHandshake,
 };
 
 export function HomePage() {
   const [categories, setCategories] = useState([]);
   const [categoryImages, setCategoryImages] = useState({});
-  const [hero, setHero] = useState({});
   const [slide, setSlide] = useState(0);
   const [error, setError] = useState('');
 
   useEffect(() => {
     let active = true;
-    Promise.all([
-      publicAPI.getCategories(),
-      publicAPI.getContent('homepage_hero').catch((requestError) => {
-        if (requestError.response?.status !== 404) throw requestError;
-        return { data: { data: {} } };
-      }),
-    ])
-      .then(async ([categoryResponse, heroResponse]) => {
+    publicAPI.getCategories()
+      .then(async (categoryResponse) => {
         const selected = categoryResponse.data.data.slice(0, 4);
         const imageResults = await Promise.all(selected.map(async (category) => {
           if (category.image?.url) return [category.slug, category.image.url];
@@ -37,7 +30,6 @@ export function HomePage() {
         if (active) {
           setCategories(selected);
           setCategoryImages(Object.fromEntries(imageResults));
-          setHero(heroResponse.data.data || {});
         }
       })
       .catch(() => {
@@ -74,13 +66,13 @@ export function HomePage() {
         <div className="relative mx-auto flex min-h-[570px] max-w-7xl items-center px-4 pb-14 pt-32 sm:px-6 sm:pt-36 lg:min-h-[660px] lg:px-8">
           <div className="max-w-3xl" data-reveal>
             <p className="mb-5 inline-flex rounded-full border border-white/30 bg-black/20 px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-[#f4d378] backdrop-blur-sm">
-              {hero.tagline || 'Textile manufacturing & export'}
+              Textile Printing for Global Markets
             </p>
             <h1 className="max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              {hero.heading || 'Textiles for global markets.'}
+              Premium Printed Cotton Fabric for Global Markets
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/90 sm:text-xl">
-              {hero.subheading || hero.body || 'Explore our fabric designs and talk with our team about your sourcing requirements.'}
+              Explore our fabric designs and talk with our team about your sourcing requirements.
             </p>
             <Link to="/products" className="mt-8 inline-flex rounded-full bg-[#D6A747] px-7 py-3.5 text-base font-semibold text-[#1d1415] transition hover:-translate-y-0.5 hover:bg-[#e4bf6b]">
               Explore Our Products
@@ -138,6 +130,28 @@ export function HomePage() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section
+        className="home-textile-cta relative isolate flex min-h-[550px] items-center justify-center px-4 py-20 text-center text-white sm:px-6 lg:min-h-[620px]"
+        style={{ backgroundImage: `url("${homeHeroImages[1]}")` }}
+        data-reveal
+      >
+        <div className="absolute inset-0 -z-10 bg-slate-950/65" />
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-balance text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
+            Bring Your Textile Ideas to Life
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/85 sm:text-xl">
+            From custom designs to finished fabrics, we provide premium textile printing and customization solutions tailored to your brand and requirements.
+          </p>
+          <Link
+            to="/contact"
+            className="mt-9 inline-flex min-h-14 items-center justify-center rounded-full bg-[#18344c] px-8 py-4 text-base font-semibold text-white transition hover:-translate-y-0.5 hover:bg-[#244b6b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          >
+            Connect with Us!
+          </Link>
         </div>
       </section>
     </div>

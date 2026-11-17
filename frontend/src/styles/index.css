@@ -43,6 +43,20 @@
   }
 }
 
+.home-textile-cta {
+  background-color: #13293a;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+  .home-textile-cta {
+    background-attachment: scroll;
+  }
+}
+
 @layer components {
   .btn-primary {
     @apply inline-flex items-center gap-2 px-6 py-3 bg-burgundy text-white font-semibold rounded-sm hover:bg-burgundy-800 transition-all duration-300 hover:shadow-burgundy hover:-translate-y-0.5;

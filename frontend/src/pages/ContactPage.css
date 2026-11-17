@@ -1,6 +1,6 @@
 .contact-page {
-  --contact-green: #245b47;
-  --contact-orange: #ff963f;
+  --contact-primary: #641e2d;
+  --contact-accent: #d6a747;
   --contact-ink: #292e2b;
   --contact-muted: #69716d;
   background: #fff;
@@ -32,13 +32,13 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: #fff4e9;
-  color: var(--contact-orange);
+  background: #f8f3e9;
+  color: var(--contact-accent);
 }
 
 .contact-eyebrow {
   margin: 24px 0 10px;
-  color: var(--contact-orange);
+  color: #80621f;
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -46,7 +46,7 @@
 
 .contact-intro h1 {
   margin: 0;
-  color: var(--contact-green);
+  color: var(--contact-primary);
   font-family: inherit;
   font-size: clamp(2.2rem, 4vw, 3.35rem);
   font-weight: 700;
@@ -59,6 +59,14 @@
   color: var(--contact-muted);
   font-size: 1.05rem;
   line-height: 1.8;
+}
+
+.contact-lead p {
+  margin: 0;
+}
+
+.contact-lead p + p {
+  margin-top: 16px;
 }
 
 .contact-form-panel {
@@ -108,9 +116,9 @@
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: var(--contact-green);
+  border-color: var(--contact-primary);
   background: #fff;
-  box-shadow: 0 0 0 3px rgb(36 91 71 / 12%);
+  box-shadow: 0 0 0 3px rgb(100 30 45 / 12%);
 }
 
 .contact-form textarea {
@@ -131,7 +139,7 @@
   gap: 10px;
   border: 0;
   border-radius: 10px;
-  background: var(--contact-orange);
+  background: var(--contact-primary);
   color: #fff;
   cursor: pointer;
   font: inherit;
@@ -142,52 +150,20 @@
 
 .contact-submit:hover:not(:disabled) {
   transform: translateY(-1px);
-  background: #ed8128;
-  box-shadow: 0 8px 18px rgb(255 150 63 / 24%);
+  background: #4f1723;
+  box-shadow: 0 8px 18px rgb(100 30 45 / 20%);
 }
 
 .contact-submit:focus-visible,
-.contact-custom-link:focus-visible,
 .contact-info-item a:focus-visible,
 .contact-map-heading a:focus-visible {
-  outline: 3px solid rgb(36 91 71 / 35%);
+  outline: 3px solid rgb(100 30 45 / 35%);
   outline-offset: 3px;
 }
 
 .contact-submit:disabled {
   cursor: wait;
   opacity: 0.7;
-}
-
-.contact-custom-link {
-  margin-top: 16px;
-  border: 0;
-  background: none;
-  color: var(--contact-green);
-  cursor: pointer;
-  font: inherit;
-  font-size: 1rem;
-  font-weight: 600;
-  text-align: left;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.contact-custom-heading {
-  grid-column: 1 / -1;
-}
-
-.contact-custom-heading h2 {
-  margin: 0;
-  color: var(--contact-green);
-  font-family: inherit;
-  font-size: 1.65rem;
-}
-
-.contact-custom-heading p {
-  margin: 8px 0 0;
-  color: var(--contact-muted);
-  font-size: 1rem;
 }
 
 .contact-message {
@@ -215,7 +191,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border-radius: 18px;
   background: #fff;
-  box-shadow: 0 16px 50px rgb(32 54 43 / 10%);
+  box-shadow: 0 16px 50px rgb(58 26 31 / 10%);
   padding: 36px 20px;
 }
 
@@ -229,7 +205,7 @@
 }
 
 .contact-info-item + .contact-info-item {
-  border-left: 1px solid #e4e8e4;
+  border-left: 1px solid #eee8e0;
 }
 
 .contact-info-icon {
@@ -238,13 +214,13 @@
   height: 48px;
   place-items: center;
   border-radius: 50%;
-  background: #edf4ef;
-  color: var(--contact-green);
+  background: #f8f3e9;
+  color: var(--contact-primary);
 }
 
 .contact-info-item h2 {
   margin: 15px 0 8px;
-  color: var(--contact-green);
+  color: var(--contact-primary);
   font-family: inherit;
   font-size: 1.15rem;
   font-weight: 700;
@@ -261,7 +237,7 @@
 }
 
 .contact-info-item a:hover {
-  color: var(--contact-green);
+  color: var(--contact-primary);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -270,8 +246,8 @@
   margin-top: 32px;
   overflow: hidden;
   border-radius: 18px;
-  background: #f3f5f2;
-  box-shadow: 0 12px 40px rgb(32 54 43 / 8%);
+  background: #f8f3e9;
+  box-shadow: 0 12px 40px rgb(58 26 31 / 8%);
 }
 
 .contact-map-heading {
@@ -284,13 +260,13 @@
 
 .contact-map-heading p {
   margin: 0;
-  color: var(--contact-green);
+  color: var(--contact-primary);
   font-size: 1.1rem;
   font-weight: 700;
 }
 
 .contact-map-heading a {
-  color: var(--contact-green);
+  color: var(--contact-primary);
   font-size: 1rem;
   font-weight: 600;
   text-decoration: underline;
@@ -342,8 +318,7 @@
   }
 
   .contact-message-field,
-  .contact-submit,
-  .contact-custom-heading {
+  .contact-submit {
     grid-column: 1;
   }
 
@@ -357,7 +332,7 @@
   }
 
   .contact-info-item + .contact-info-item {
-    border-top: 1px solid #e4e8e4;
+    border-top: 1px solid #eee8e0;
     border-left: 0;
   }
 

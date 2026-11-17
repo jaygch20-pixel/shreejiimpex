@@ -28,8 +28,6 @@ export async function mockApi(page) {
       body = { success: true, data: {} };
     } else if (path === '/enquiries' && request.method() === 'POST') {
       body = { success: true, message: 'Enquiry received.', referenceId: 'ENQ-TEST-1' };
-    } else if (path === '/custom-requests' && request.method() === 'POST') {
-      body = { success: true, message: 'Custom artwork received.' };
     } else if (path.startsWith('/designs/')) {
       body = { success: true, data: { _id: 'design-1', slug: 'verified-design', name: 'Verified Design', designCode: 'VD-01', images: [] } };
     }

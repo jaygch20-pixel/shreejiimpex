@@ -5,6 +5,15 @@ export const navigation = [
   { label: 'Contact', to: '/contact' },
 ];
 
+export const footerNavigation = [
+  { label: 'Home', to: '/' },
+  { label: 'About Us', to: '/about' },
+  { label: 'Products', to: '/products' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'Manufacturing', to: '/manufacturing' },
+  { label: 'Contact Us', to: '/contact' },
+];
+
 export const homeHeroImages = [
   '/images/homepage-background-1.webp',
   '/images/homepage-background-2.webp',
@@ -17,21 +26,21 @@ export const coreValues = [
     icon: 'integrity',
   },
   {
-    title: 'PERSEVERANCE',
-    description: 'We are dedicated to overcoming challenges, adapting to market changes, and continuously improving our processes.',
-    icon: 'perseverance',
+    title: 'CUSTOMIZABLE DESIGNS',
+    description: 'We understand that every customer and market has unique requirements. Our flexible textile printing solutions allow customers to customize fabric designs, patterns, colours, and printing requirements to match their preferences and brand identity.',
+    icon: 'customizable',
   },
   {
-    title: 'LOYALTY',
-    description: 'We value our workforce and foster a supportive and collaborative environment.',
-    icon: 'loyalty',
+    title: 'CUSTOMER SATISFACTION',
+    description: 'Our customers are at the heart of everything we do. We focus on understanding their requirements, maintaining consistent quality, and delivering reliable textile solutions that build long-term business relationships.',
+    icon: 'satisfaction',
   },
 ];
 
 export const companyContact = {
-  address: 'Opp. Panjrapol mahajan\nChaprajpur road\nJetpur 360370',
-  phone: '9265598851',
+  address: 'OPP. PANJRAPOL MAHAJAN\nCHAPRAJPUR ROAD\nJETPUR 360370',
+  phoneNumbers: ['+91 9265598851', '+91 9929872457'],
   mapUrl: 'https://maps.app.goo.gl/RNeSjzCCDUYoyMNb7',
-  email: '',
+  email: 'shreejiimpexjetpur@gmail.com',
   socialLinks: {},
 };

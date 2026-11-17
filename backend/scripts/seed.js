@@ -347,7 +347,7 @@ const seedWebsiteContent = async () => {
   const sections = [
     {
       section: 'branding',
-      tagline: 'From White Cotton to Beautiful African Prints.',
+      tagline: 'Premium Printed Cotton Fabric for Global Markets.',
       data: {
         companyName: 'Shreeji Impex',
         logoText: 'SI',
@@ -359,11 +359,11 @@ const seedWebsiteContent = async () => {
     },
     {
       section: 'homepage_hero',
-      heading: 'Bringing African Textile Designs to Life.',
-      subheading: 'Premium Kitenge & Kitango Printed Cotton Fabric for International Wholesale Buyers',
-      body: 'From White Cotton to Beautiful African Prints.',
+      heading: 'Premium Printed Cotton Fabric for Global Markets',
+      subheading: 'Textile printing solutions for domestic and international business buyers.',
+      body: 'Explore Shreeji Impex fabric designs and contact our team about your sourcing requirements.',
       data: {
-        ctaPrimary: { text: 'Explore Our Collections', link: '/collections' },
+        ctaPrimary: { text: 'Explore Our Products', link: '/products' },
         ctaSecondary: { text: 'Request a Quote', link: '/contact' },
         highlightStats: [
           { label: 'Years Experience', value: 'Est. XXXX', note: '(Sample — Update)' },
@@ -488,8 +488,8 @@ This content is SAMPLE DATA. Please update it with accurate company information 
     {
       section: 'footer',
       data: {
-        tagline: 'From White Cotton to Beautiful African Prints.',
-        description: 'Professional manufacturer of Kitenge & Kitango printed cotton fabric for international wholesale buyers.',
+        tagline: 'Premium Printed Cotton Fabric for Global Markets.',
+        description: 'Printed cotton fabric collections and textile printing solutions for business buyers.',
         copyrightYear: new Date().getFullYear(),
         companyName: 'Shreeji Impex',
       },
@@ -497,9 +497,9 @@ This content is SAMPLE DATA. Please update it with accurate company information 
     },
     {
       section: 'seo_global',
-      title: 'Shreeji Impex | Kitenge & Kitango Printed Cotton Fabric Manufacturer',
+      title: 'Shreeji Impex | Premium Printed Cotton Fabric',
       data: {
-        description: 'Shreeji Impex is a professional manufacturer of Kitenge and Kitango printed cotton fabric for international wholesale buyers. Quality African printed textile fabric for export.',
+        description: 'Explore Shreeji Impex printed cotton fabric collections and textile printing solutions for global markets.',
         keywords: 'Kitenge fabric manufacturer, African printed cotton fabric, Kitango fabric supplier, African fabric wholesale, custom printed fabric',
         ogImage: SAMPLE_IMAGES.heroFabric,
       },
