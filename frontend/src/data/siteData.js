@@ -5,12 +5,9 @@ export const navigation = [
   { label: 'Contact', to: '/contact' },
 ];
 
-export const demoTextileImages = [
-  '/demo-assets/kitango-01.svg',
-  '/demo-assets/kitango-02.svg',
-  '/demo-assets/kitango-03.svg',
-  '/demo-assets/kitango-04.svg',
-  '/demo-assets/kitango-05.svg',
+export const homeHeroImages = [
+  '/images/homepage-background-1.webp',
+  '/images/homepage-background-2.webp',
 ];
 
 export const coreValues = [

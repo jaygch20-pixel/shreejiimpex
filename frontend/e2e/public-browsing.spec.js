@@ -10,6 +10,10 @@ test('public pages are browseable without an account and the requested navigatio
   }));
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Textiles for global markets.' })).toBeVisible();
+  await expect(page.locator('.home-hero img')).toHaveCount(2);
+  await expect(page.locator('.home-hero img').nth(0)).toHaveAttribute('src', '/images/homepage-background-1.webp');
+  await expect(page.locator('.home-hero img').nth(1)).toHaveAttribute('src', '/images/homepage-background-2.webp');
+  await expect(page.locator('.core-values-section img')).toHaveCount(0);
   await expect(page.getByRole('heading', { name: 'OUR CORE VALUES' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Java' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Java' }).locator('img')).toHaveAttribute('src', /f_auto,q_auto,c_limit,w_720/);

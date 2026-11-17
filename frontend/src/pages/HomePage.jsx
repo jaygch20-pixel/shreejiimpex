@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BadgeCheck, RefreshCw, UsersRound } from 'lucide-react';
-import { coreValues, demoTextileImages } from '../data/siteData';
+import { coreValues, homeHeroImages } from '../data/siteData';
 import { publicAPI } from '../services/api';
 import { getOptimizedImageUrl } from '../services/imageUrl';
 
@@ -50,7 +50,7 @@ export function HomePage() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
     const timer = window.setInterval(() => {
-      setSlide((current) => (current + 1) % demoTextileImages.length);
+      setSlide((current) => (current + 1) % homeHeroImages.length);
     }, 5500);
     return () => window.clearInterval(timer);
   }, []);
@@ -58,7 +58,7 @@ export function HomePage() {
   return (
     <div>
       <section className="home-hero relative isolate -mt-[76px] overflow-hidden bg-[#24191b] text-white sm:-mt-[84px]" aria-label="Featured textile designs">
-        {demoTextileImages.map((image, index) => (
+        {homeHeroImages.map((image, index) => (
           <img
             key={image}
             src={getOptimizedImageUrl(image, 1920)}
@@ -87,7 +87,7 @@ export function HomePage() {
             </Link>
           </div>
           <div className="absolute bottom-7 right-6 flex gap-2 sm:right-10" aria-label="Hero image slides">
-            {demoTextileImages.map((image, index) => (
+            {homeHeroImages.map((image, index) => (
               <span key={image} className={`h-1.5 rounded-full transition-all ${index === slide ? 'w-8 bg-white' : 'w-3 bg-white/50'}`} />
             ))}
           </div>
@@ -95,8 +95,6 @@ export function HomePage() {
       </section>
 
       <section className="core-values-section relative isolate overflow-hidden bg-[#1d1918] px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-20" data-reveal>
-        <img src="/demo-assets/kitango-06.svg" alt="" aria-hidden="true" loading="lazy" decoding="async" className="absolute inset-0 -z-20 h-full w-full object-cover" />
-        <div className="absolute inset-0 -z-10 bg-[#181211]/70 backdrop-blur-[1px]" />
         <div className="mx-auto max-w-7xl">
           <header className="mb-9 text-center" data-reveal>
             <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#f0c767]">What guides us</p>
