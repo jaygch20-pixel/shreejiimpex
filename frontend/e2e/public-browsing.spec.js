@@ -1,0 +1,41 @@
+import { expect, test } from '@playwright/test';
+import { mockApi } from './helpers';
+
+test('public pages are browseable without an account and the requested navigation stays focused', async ({ page }) => {
+  await mockApi(page);
+  await page.route('https://res.cloudinary.com/**', (route) => route.fulfill({
+    status: 200,
+    contentType: 'image/gif',
+    body: Buffer.from('R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=', 'base64'),
+  }));
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: 'Textiles for global markets.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'OUR CORE VALUES' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Java' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Java' }).locator('img')).toHaveAttribute('src', /f_auto,q_auto,c_limit,w_720/);
+  await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link')).toHaveText(['Home', 'About', 'Our Products', 'Contact']);
+
+  await page.goto('/admin');
+  await expect(page.getByRole('heading', { name: 'Page not found' })).toBeVisible();
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Open navigation menu' }).click();
+  await expect(page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link')).toHaveText(['Home', 'About', 'Our Products', 'Contact']);
+  await page.getByRole('navigation', { name: 'Mobile navigation' }).getByRole('link', { name: 'Our Products' }).click();
+  await expect(page).toHaveURL(/\/products$/);
+
+  await page.goto('/products');
+  await expect(page.getByRole('heading', { name: 'Explore the catalogue' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Java' })).toBeVisible();
+  await expect(page.locator('body')).not.toContainText('Sign in to browse');
+
+  await page.goto('/about');
+  await expect(page.getByRole('heading', { name: 'About Shreeji Impex' })).toBeVisible();
+  await page.goto('/products/java');
+  await expect(page.getByRole('heading', { name: 'Java' })).toBeVisible();
+  await expect(page.locator('img[alt="Demo fabric design"]')).toBeVisible();
+  await page.goto('/contact');
+  await expect(page.getByRole('heading', { name: 'Get in Touch with Shreeji Impex' })).toBeVisible();
+  expect(await page.evaluate(() => localStorage.length)).toBe(0);
+});

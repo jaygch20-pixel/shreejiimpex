@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f1e9da"/><stop offset="1" stop-color="#c9b89d"/></linearGradient>
+    <pattern id="cloth" width="82" height="82" patternUnits="userSpaceOnUse"><rect width="82" height="82" fill="#244b3b"/><path d="M41 8 74 41 41 74 8 41Z" fill="#e9b64d"/><circle cx="41" cy="41" r="10" fill="#a83c36"/></pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#30231a" flood-opacity=".24"/></filter>
+  </defs>
+  <rect width="1000" height="800" fill="url(#bg)"/>
+  <g filter="url(#shadow)" stroke="#554638" stroke-width="20" stroke-linejoin="round">
+    <path d="m190 325 310-165 310 165-310 170Z" fill="#d8a84c"/>
+    <path d="M190 325v280l310 170V495Z" fill="#bd8f42"/>
+    <path d="M810 325v280L500 775V495Z" fill="#e4bd70"/>
+  </g>
+  <path d="m370 227 260 140v86L370 313Z" fill="url(#cloth)" stroke="#554638" stroke-width="12"/>
+  <path d="M500 495v280M190 325l310 170 310-170" fill="none" stroke="#554638" stroke-width="15"/>
+  <rect x="36" y="720" width="300" height="44" rx="22" fill="#fff" fill-opacity=".92"/>
+  <text x="186" y="748" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#49352d">DEMO PROCESS ILLUSTRATION</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#eef0e9"/><stop offset="1" stop-color="#c4cbb8"/></linearGradient>
+    <pattern id="cloth" width="74" height="74" patternUnits="userSpaceOnUse"><rect width="74" height="74" fill="#183c51"/><path d="M37 5 69 37 37 69 5 37Z" fill="#e9b64d"/><circle cx="37" cy="37" r="10" fill="#a9403b"/></pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#29302a" flood-opacity=".22"/></filter>
+  </defs>
+  <rect width="1000" height="800" fill="url(#bg)"/>
+  <rect x="190" y="170" width="470" height="455" rx="24" fill="#fffdf7" stroke="#415448" stroke-width="18" filter="url(#shadow)"/>
+  <path d="M260 255h325M260 310h270M260 485h325M260 540h270" stroke="#b8b8a8" stroke-width="18" stroke-linecap="round"/>
+  <path d="M250 360h340v90H250z" fill="url(#cloth)"/>
+  <circle cx="675" cy="500" r="125" fill="#d9ad4b" fill-opacity=".22" stroke="#345248" stroke-width="24"/>
+  <path d="m765 590 105 112" stroke="#345248" stroke-width="42" stroke-linecap="round"/>
+  <path d="m620 500 42 45 80-93" fill="none" stroke="#41744d" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="36" y="720" width="300" height="44" rx="22" fill="#fff" fill-opacity=".92"/>
+  <text x="186" y="748" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#49352d">DEMO PROCESS ILLUSTRATION</text>
+</svg>

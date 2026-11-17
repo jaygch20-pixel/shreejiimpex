@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800">
+  <defs>
+    <linearGradient id="table" x2="1" y2="1"><stop stop-color="#f1e8dc"/><stop offset="1" stop-color="#bdad9c"/></linearGradient>
+    <linearGradient id="cloth" x2="1" y2=".7"><stop stop-color="#fff" stop-opacity=".34"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#12100c" stop-opacity=".32"/></linearGradient>
+    <pattern id="print" width="144" height="144" patternUnits="userSpaceOnUse">
+      <rect width="144" height="144" fill="#bc4e32"/>
+      <circle cx="72" cy="72" r="48" fill="#f1c15a" stroke="#fff0d0" stroke-width="5"/>
+      <circle cx="72" cy="72" r="31" fill="#1c5960" stroke="#fff0d0" stroke-width="5"/>
+      <circle cx="72" cy="72" r="12" fill="#f8e7c2"/>
+      <path d="M72 4v24M72 116v24M4 72h24M116 72h24" stroke="#fff0d0" stroke-width="7"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="24" stdDeviation="20" flood-color="#30231a" flood-opacity=".35"/></filter>
+  </defs>
+  <rect width="1000" height="800" fill="url(#table)"/>
+  <path d="m103 600 580-505q17-14 35 1l182 153q18 16 1 34L319 824Z" fill="#24191b" opacity=".14"/>
+  <path d="m83 578 580-505q17-14 35 1l182 153q18 16 1 34L299 802Z" fill="url(#print)" filter="url(#shadow)"/>
+  <path d="m83 578 580-505q17-14 35 1l182 153q18 16 1 34L299 802Z" fill="url(#cloth)"/>
+  <path d="m195 627 580-508M298 716l580-508" stroke="#fff" stroke-opacity=".17" stroke-width="19"/>
+  <rect x="36" y="720" width="272" height="44" rx="22" fill="#fff" fill-opacity=".92"/>
+  <text x="172" y="748" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#49352d">DEMO PRINT • NOT A PHOTO</text>
+</svg>

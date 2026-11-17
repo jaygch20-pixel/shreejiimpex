@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#e5edf0"/><stop offset="1" stop-color="#bdcbd0"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#142128" flood-opacity=".22"/></filter>
+  </defs>
+  <rect width="1000" height="800" fill="url(#bg)"/>
+  <g filter="url(#shadow)" stroke="#27343a" stroke-width="24" stroke-linejoin="round">
+    <path d="M245 200h510v420H245z" fill="#d9a746"/>
+    <path d="M287 244h426v330H287z" fill="#f3e8ce"/>
+    <path d="M215 174h570M215 646h570" fill="none" stroke-linecap="round"/>
+  </g>
+  <g stroke="#a9473c" stroke-width="15">
+    <path d="M330 260v300M380 260v300M430 260v300M480 260v300M530 260v300M580 260v300M630 260v300M680 260v300"/>
+  </g>
+  <path d="M300 350h400M300 420h400M300 490h400" stroke="#234d5a" stroke-width="26"/>
+  <rect x="36" y="720" width="300" height="44" rx="22" fill="#fff" fill-opacity=".92"/>
+  <text x="186" y="748" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="2" fill="#29343a">DEMO PROCESS ILLUSTRATION</text>
+</svg>
