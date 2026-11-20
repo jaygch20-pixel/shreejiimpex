@@ -47,17 +47,17 @@ export function ProductCatalogPage() {
       {!loading && categories.length === 0 && (
         <p className="rounded-xl border border-stone-200 bg-white p-8 text-center text-stone-600">Fabric categories will appear here when available.</p>
       )}
-      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="product-category-grid grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {categories.map((category) => {
           const image = category.image?.url || categoryImages[category.slug];
           return (
             <Link
               key={category._id}
               to={`/products/${encodeURIComponent(category.slug)}`}
-              className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-stone-200 shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-xl"
+              className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-[#f8f3e9] shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-xl"
               data-reveal
             >
-              {image && <img src={getOptimizedImageUrl(image, 720)} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />}
+              {image && <img src={getOptimizedImageUrl(image, 720)} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain transition duration-700" />}
               <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
               <span className="absolute bottom-5 left-5 right-5 text-2xl font-semibold text-white">{category.name}</span>
             </Link>

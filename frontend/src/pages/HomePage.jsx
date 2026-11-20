@@ -110,7 +110,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+      <section className="home-product-collections mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <header className="mb-8" data-reveal>
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#641E2D]">Fabric collections</p>
           <h2 className="mt-2 text-3xl font-semibold text-stone-900 sm:text-4xl">Explore Catalog</h2>
@@ -123,10 +123,10 @@ export function HomePage() {
               <Link
                 key={category._id}
                 to={`/products/${encodeURIComponent(category.slug)}`}
-                className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-stone-200 shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-xl"
+                className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-[#f8f3e9] shadow-sm transition duration-500 hover:-translate-y-1 hover:shadow-xl"
                 data-reveal
               >
-                {image && <img src={getOptimizedImageUrl(image, 720)} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />}
+                {image && <img src={getOptimizedImageUrl(image, 720)} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain transition duration-700" />}
                 <span className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
                 <span className="absolute bottom-5 left-5 right-5 text-2xl font-semibold text-white">{category.name}</span>
               </Link>

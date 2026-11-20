@@ -74,8 +74,8 @@ export function CategoryGalleryPage() {
       )}
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {images.map((image) => (
-          <figure key={image.key} className="aspect-square overflow-hidden rounded-xl bg-stone-100" data-reveal>
-            <img src={getOptimizedImageUrl(image.url, 1000)} alt={image.alt} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 hover:scale-[1.03]" />
+          <figure key={image.key} className="aspect-[4/5] overflow-hidden rounded-xl bg-[#f8f3e9]" data-reveal>
+            <img src={getOptimizedImageUrl(image.url, 1000)} alt={image.alt} loading="lazy" decoding="async" className="h-full w-full object-contain" />
           </figure>
         ))}
       </div>

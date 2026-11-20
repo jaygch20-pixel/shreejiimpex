@@ -19,8 +19,16 @@ test('public pages are browseable without an account and the requested navigatio
   await expect(page.getByRole('banner')).toHaveCSS('background-color', 'rgb(255, 255, 255)');
   await expect(page.getByRole('img', { name: 'SHREEJI IMPEX logo' })).toHaveAttribute('src', '/images/shreeji-impex-logo.webp');
   await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/images/shreeji-impex-icon.png');
-  await expect(page.locator('.grid a[href="/products/java"]').first()).toBeVisible();
-  await expect(page.locator('.grid a[href="/products/java"]').first().locator('img')).toHaveAttribute('src', '/images/products/java/java-01.jpeg');
+  const expectedCollectionOrder = ['Real Wax', 'Ankara Print', 'Rainbow Color', 'Angel', 'Java'];
+  const homeCollections = page.locator('.home-product-collections');
+  const homeCollectionNames = await homeCollections.locator('a span.text-2xl').evaluateAll((spans) => spans.slice(0, 5).map((span) => span.textContent.trim()));
+  expect(homeCollectionNames).toEqual(expectedCollectionOrder);
+  await expect(homeCollections.locator('a img').nth(0)).toHaveAttribute('src', '/images/products/real-wax/cover.webp');
+  expect(await homeCollections.locator('a img').evaluateAll((images) => images.slice(0, 5).map((image) => window.getComputedStyle(image).objectFit)))
+    .toEqual(Array(5).fill('contain'));
+  const coverUrls = await homeCollections.locator('a img').evaluateAll((images) => images.slice(0, 5).map((image) => image.getAttribute('src')));
+  const coverResponses = await page.evaluate((urls) => Promise.all(urls.map(async (url) => (await fetch(url)).ok)), coverUrls);
+  expect(coverResponses).toEqual(Array(5).fill(true));
   await expect(page.getByRole('navigation', { name: 'Main navigation' }).getByRole('link')).toHaveText(['Home', 'About', 'Our Products', 'Contact']);
   const desktopNavAtRight = await page.getByRole('navigation', { name: 'Main navigation' }).evaluate((nav) => {
     const container = nav.parentElement;
@@ -49,10 +57,11 @@ test('public pages are browseable without an account and the requested navigatio
 
   await page.goto('/products');
   await expect(page.getByRole('heading', { name: 'Explore the catalogue' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Java' }).first()).toBeVisible();
-  for (const printType of ['Angel', 'Ankara Print', 'Java', 'Rainbow Color', 'Real Wax']) {
-    await expect(page.locator('main').getByRole('link', { name: printType }).first()).toBeVisible();
-  }
+  const catalogCollectionNames = await page.locator('.product-category-grid a span.text-2xl').evaluateAll((spans) => spans.slice(0, 5).map((span) => span.textContent.trim()));
+  expect(catalogCollectionNames).toEqual(expectedCollectionOrder);
+  await expect(page.locator('.product-category-grid a img').nth(0)).toHaveAttribute('src', '/images/products/real-wax/cover.webp');
+  expect(await page.locator('.product-category-grid a img').evaluateAll((images) => images.slice(0, 5).map((image) => window.getComputedStyle(image).objectFit)))
+    .toEqual(Array(5).fill('contain'));
   await expect(page.locator('body')).not.toContainText('Sign in to browse');
 
   await page.goto('/about');
@@ -80,6 +89,8 @@ test('public pages are browseable without an account and the requested navigatio
     await expect(page.getByRole('heading', { name })).toBeVisible();
     const galleryImages = page.locator(`main img[alt^="${name} printed cotton fabric design"]`);
     await expect(galleryImages).toHaveCount(count);
+    expect(await galleryImages.evaluateAll((images) => images.map((image) => window.getComputedStyle(image).objectFit)))
+      .toEqual(Array(count).fill('contain'));
     const photoUrls = await galleryImages.evaluateAll((images) => images.map((image) => image.getAttribute('src')));
     const photoResponses = await page.evaluate((urls) => Promise.all(urls.map(async (url) => {
       const response = await fetch(url);
