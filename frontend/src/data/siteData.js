@@ -39,7 +39,7 @@ export const coreValues = [
 
 export const companyContact = {
   address: 'OPP. PANJRAPOL MAHAJAN\nCHAPRAJPUR ROAD\nJETPUR 360370',
-  phoneNumbers: ['+91 9265598851', '+91 9929872457'],
+  phoneNumbers: ['+91 9265598851', '+91 9925872457'],
   mapUrl: 'https://maps.app.goo.gl/RNeSjzCCDUYoyMNb7',
   email: 'shreejiimpexjetpur@gmail.com',
   socialLinks: {},

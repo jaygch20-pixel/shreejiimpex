@@ -24,6 +24,20 @@ body {
     #f8f3e9;
 }
 
+.home-textile-cta {
+  background-color: #13293a;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-textile-cta {
+    background-attachment: scroll;
+  }
+}
+
 #root {
   min-height: 100vh;
 }

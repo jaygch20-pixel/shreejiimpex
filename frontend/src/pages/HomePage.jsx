@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BadgeCheck, HeartHandshake, Sparkles } from 'lucide-react';
 import { coreValues, homeHeroImages } from '../data/siteData';
+import { localProductCategories, mergeProductCategories } from '../data/productCategories';
 import { publicAPI } from '../services/api';
 import { getOptimizedImageUrl } from '../services/imageUrl';
 
@@ -15,13 +16,12 @@ export function HomePage() {
   const [categories, setCategories] = useState([]);
   const [categoryImages, setCategoryImages] = useState({});
   const [slide, setSlide] = useState(0);
-  const [error, setError] = useState('');
 
   useEffect(() => {
     let active = true;
     publicAPI.getCategories()
       .then(async (categoryResponse) => {
-        const selected = categoryResponse.data.data.slice(0, 4);
+        const selected = mergeProductCategories(categoryResponse.data.data);
         const imageResults = await Promise.all(selected.map(async (category) => {
           if (category.image?.url) return [category.slug, category.image.url];
           const response = await publicAPI.getDesigns({ category: category.slug, limit: 1 });
@@ -33,7 +33,10 @@ export function HomePage() {
         }
       })
       .catch(() => {
-        if (active) setError('We could not load the website content. Please try again later.');
+        if (active) {
+          setCategories(localProductCategories);
+          setCategoryImages({});
+        }
       });
 
     return () => { active = false; };
@@ -112,8 +115,7 @@ export function HomePage() {
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#641E2D]">Fabric collections</p>
           <h2 className="mt-2 text-3xl font-semibold text-stone-900 sm:text-4xl">Explore Catalog</h2>
         </header>
-        {error && <p role="alert" className="mb-6 rounded-xl bg-red-50 p-4 text-red-700">{error}</p>}
-        {!error && categories.length === 0 && <p className="rounded-xl bg-white p-6 text-base text-stone-600">Fabric categories will appear here once they are available.</p>}
+        {categories.length === 0 && <p className="rounded-xl bg-white p-6 text-base text-stone-600">Fabric categories will appear here once they are available.</p>}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((category) => {
             const image = category.image?.url || categoryImages[category.slug];
@@ -134,7 +136,7 @@ export function HomePage() {
       </section>
 
       <section
-        className="home-textile-cta relative isolate flex min-h-[550px] items-center justify-center px-4 py-20 text-center text-white sm:px-6 lg:min-h-[620px]"
+        className="home-textile-cta relative isolate flex min-h-screen items-center justify-center px-4 py-20 text-center text-white sm:px-6"
         style={{ backgroundImage: `url("${homeHeroImages[1]}")` }}
         data-reveal
       >

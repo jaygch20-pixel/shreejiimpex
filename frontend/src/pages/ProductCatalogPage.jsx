@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { localProductCategories, mergeProductCategories } from '../data/productCategories';
 import { publicAPI } from '../services/api';
 import { getOptimizedImageUrl } from '../services/imageUrl';
 
@@ -7,13 +8,12 @@ export function ProductCatalogPage() {
   const [categories, setCategories] = useState([]);
   const [categoryImages, setCategoryImages] = useState({});
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
 
   useEffect(() => {
     let active = true;
     publicAPI.getCategories()
       .then(async ({ data }) => {
-        const selected = data.data.slice(0, 4);
+        const selected = mergeProductCategories(data.data);
         const imageResults = await Promise.all(selected.map(async (category) => {
           if (category.image?.url) return [category.slug, category.image.url];
           const response = await publicAPI.getDesigns({ category: category.slug, limit: 1 });
@@ -25,7 +25,10 @@ export function ProductCatalogPage() {
         }
       })
       .catch(() => {
-        if (active) setError('Product categories could not be loaded. Please try again later.');
+        if (active) {
+          setCategories(localProductCategories);
+          setCategoryImages({});
+        }
       })
       .finally(() => {
         if (active) setLoading(false);
@@ -40,9 +43,8 @@ export function ProductCatalogPage() {
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#641E2D]">Our products</p>
         <h1 className="mt-3 text-4xl font-semibold text-stone-900">Explore the catalogue</h1>
       </header>
-      {error && <p role="alert" className="rounded-xl bg-red-50 p-4 text-red-700">{error}</p>}
       {loading && <p className="py-8 text-stone-600">Loading fabric categories…</p>}
-      {!loading && !error && categories.length === 0 && (
+      {!loading && categories.length === 0 && (
         <p className="rounded-xl border border-stone-200 bg-white p-8 text-center text-stone-600">Fabric categories will appear here when available.</p>
       )}
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

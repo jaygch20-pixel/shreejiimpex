@@ -1,12 +1,7 @@
 import {
   BadgeCheck,
-  Building2,
-  FlaskConical,
-  Gauge,
   HeartHandshake,
   Lightbulb,
-  PackageCheck,
-  Printer,
   RefreshCw,
   ShieldCheck,
   Sparkles,
@@ -14,19 +9,10 @@ import {
 } from 'lucide-react';
 import { homeHeroImages } from '../data/siteData';
 
-const capabilities = [
-  { text: '25,000 sq. ft. modern manufacturing facility.', Icon: Building2 },
-  { text: 'Latest textile printing machinery.', Icon: Printer },
-  { text: 'Dedicated packing department.', Icon: PackageCheck },
-  { text: 'Production capacity of up to 100,000 meters per day.', Icon: Gauge },
-  { text: 'Printing expertise in Cotton, Polyester and Rayon.', Icon: Stamp },
-  { text: 'Advanced in-house testing laboratory.', Icon: FlaskConical },
-];
-
 const values = [
   {
     title: 'Quality First',
-    description: 'We focus on maintaining consistent fabric quality through careful production processes and in-house testing.',
+    description: 'We focus on maintaining consistent fabric quality and meeting our customers’ expectations.',
     Icon: BadgeCheck,
   },
   {
@@ -63,17 +49,20 @@ export function AboutPage() {
         <div data-reveal>
           <p className="text-sm font-semibold uppercase tracking-[0.22em] text-[#641E2D]">About Shreeji Impex</p>
           <h1 className="mt-4 max-w-2xl text-4xl font-semibold leading-tight text-stone-900 sm:text-5xl">
-            Traditional Craft to Modern Textile Printing
+            Our Story
           </h1>
           <div className="mt-6 space-y-4 text-base leading-8 text-stone-600 sm:text-lg">
             <p>
-              Shreeji Impex, formerly known as Geneva Textile Printery, is a growing textile printing company based in Gujarat, India. Established in 1995 with traditional hand block printing, we have evolved with changing market demands while staying connected to our printing heritage.
+              Founded in 2010, Shreeji Impex is a textile manufacturing company based in Jetpur, Gujarat, India. Built on a passion for textile printing and quality craftsmanship, we specialize in producing high-quality printed cotton fabrics featuring vibrant colours and beautiful designs inspired by traditional African patterns.
             </p>
             <p>
-              Under the leadership of Mr. Pintu Patel, CEO, we have grown into a textile manufacturing company serving both domestic and international markets. Today, we combine traditional printing expertise with advanced machinery and modern technology to deliver quality fabrics with consistency and efficiency.
+              <strong>Our Speciality:</strong> Premium Swiss Voile and Kitenge printed fabrics, featuring vibrant colours and attractive designs.
             </p>
             <p>
-              Our fabrics reach international customers across African countries, the UK, and the USA. We specialize in textile printing across Cotton, Polyester, and Rayon, offering printing solutions to meet diverse customer requirements.
+              With two manufacturing units in Jetpur, we combine our printing expertise with modern manufacturing techniques to create colourful, attractive, and quality fabrics that meet diverse customer requirements. We focus on delivering vibrant prints, rich colours, and consistent quality throughout the production process.
+            </p>
+            <p>
+              Today, we proudly supply our printed cotton fabrics to customers across various African countries. With a strong commitment to quality, creativity, and customer satisfaction, we continue to grow while staying connected to Jetpur&apos;s rich textile printing heritage.
             </p>
           </div>
         </div>
@@ -104,29 +93,12 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-labelledby="capabilities-heading">
-        <div className="mb-8 max-w-2xl" data-reveal>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#641E2D]">Built for textile production</p>
-          <h2 id="capabilities-heading" className="mt-3 text-3xl font-semibold text-stone-900 sm:text-4xl">Our Capabilities</h2>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map(({ text, Icon }) => (
-            <article key={text} className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm" data-reveal>
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[#F8F3E9] text-[#641E2D]">
-                <Icon aria-hidden="true" size={22} strokeWidth={1.8} />
-              </span>
-              <p className="pt-1 text-base font-medium leading-7 text-stone-700">{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="bg-[#F8F3E9] px-4 py-16 sm:px-6 lg:py-20" aria-labelledby="vision-heading">
         <div className="mx-auto max-w-5xl rounded-3xl border border-[#641E2D]/15 bg-white/70 px-6 py-10 text-center shadow-sm sm:px-12 sm:py-14" data-reveal>
           <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#641E2D]">Looking ahead</p>
           <h2 id="vision-heading" className="mt-3 text-3xl font-semibold tracking-wide text-stone-900 sm:text-4xl">OUR VISION</h2>
           <p className="mx-auto mt-6 max-w-4xl text-base leading-8 text-stone-600 sm:text-lg">
-            To become a trusted global name in textile printing by combining our traditional craftsmanship, modern manufacturing capabilities, and commitment to quality. We aim to serve international markets with innovative fabric designs, reliable production, and customized textile solutions that meet the evolving needs of our customers.
+            We aim to produce quality printed cotton fabrics with attractive designs and vibrant colours, grow our business, and serve customers across international markets.
           </p>
         </div>
       </section>

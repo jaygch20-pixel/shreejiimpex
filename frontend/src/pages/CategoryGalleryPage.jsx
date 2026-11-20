@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { localProductCategories } from '../data/productCategories';
 import { publicAPI } from '../services/api';
 import { getOptimizedImageUrl } from '../services/imageUrl';
 
@@ -14,6 +15,18 @@ export function CategoryGalleryPage() {
     let active = true;
     setLoading(true);
     setError('');
+
+    const localCategory = localProductCategories.find((item) => item.slug === slug);
+    if (localCategory) {
+      setCategory(localCategory);
+      setImages(localCategory.images.map((url, index) => ({
+        url,
+        key: `${localCategory.slug}-${index + 1}`,
+        alt: `${localCategory.name} printed cotton fabric design ${index + 1}`,
+      })));
+      setLoading(false);
+      return () => { active = false; };
+    }
 
     Promise.all([
       publicAPI.getCategories(),

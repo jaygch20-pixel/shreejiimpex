@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Mail, MapPin, Menu, Phone, X } from 'lucide-react';
+import { localProductCategories, mergeProductCategories } from '../data/productCategories';
 import { companyContact, footerNavigation, navigation } from '../data/siteData';
 import { publicAPI } from '../services/api';
 
@@ -9,12 +10,8 @@ export function Layout() {
   const [branding, setBranding] = useState({});
   const [categories, setCategories] = useState([]);
   const [designs, setDesigns] = useState([]);
-  const [catalogError, setCatalogError] = useState('');
   const [demoPreview, setDemoPreview] = useState(false);
-  const [scrolled, setScrolled] = useState(window.scrollY > 24);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isHome = location.pathname === '/';
-  const transparentHeader = isHome && !scrolled;
 
   useEffect(() => {
     publicAPI.getAllContent()
@@ -34,21 +31,17 @@ export function Layout() {
     ])
       .then(([categoryResponse, designResponse]) => {
         if (!active) return;
-        setCategories(categoryResponse.data.data.slice(0, 4));
+        setCategories(mergeProductCategories(categoryResponse.data.data).slice(0, 5));
         setDesigns(designResponse.data.data.slice(0, 3));
       })
       .catch(() => {
-        if (active) setCatalogError('Product links are temporarily unavailable.');
+        if (active) {
+          setCategories(localProductCategories);
+          setDesigns([]);
+        }
       });
 
     return () => { active = false; };
-  }, []);
-
-  useEffect(() => {
-    const updateScroll = () => setScrolled(window.scrollY > 24);
-    updateScroll();
-    window.addEventListener('scroll', updateScroll, { passive: true });
-    return () => window.removeEventListener('scroll', updateScroll);
   }, []);
 
   useEffect(() => {
@@ -94,9 +87,8 @@ export function Layout() {
   const brandName = 'SHREEJI IMPEX';
   const navClass = ({ isActive }) => [
     'rounded-full px-3 py-2 text-base font-medium transition-colors duration-300',
-    transparentHeader ? 'text-white hover:bg-white/10 hover:text-white' : 'text-stone-700 hover:bg-white/60 hover:text-[#641E2D]',
-    isActive && (transparentHeader ? 'bg-white/10 text-white' : 'bg-white/60 text-[#641E2D]'),
-  ].filter(Boolean).join(' ');
+    isActive ? 'bg-[#005B63]/10 text-[#005B63]' : 'text-[#17454A] hover:bg-[#005B63]/10 hover:text-[#005B63]',
+  ].join(' ');
 
   return (
     <div className="site-shell min-h-screen text-stone-800">
@@ -105,25 +97,25 @@ export function Layout() {
           DEMO PREVIEW — fictional sample details and illustrated textile designs. Replace before sharing or publishing.
         </div>
       )}
-      <header className={`sticky top-0 z-50 border-b transition-colors duration-500 ${transparentHeader ? 'border-transparent bg-transparent' : 'border-stone-900/5 bg-[#F8F3E9]/95 shadow-sm backdrop-blur-md'}`}>
+      <header className="sticky top-0 z-50 border-b border-[#005B63]/10 bg-white text-[#17454A] shadow-sm">
         <div className="mx-auto flex min-h-[76px] max-w-7xl items-center gap-8 px-4 sm:min-h-[84px] sm:px-6 lg:px-8">
-          <Link to="/" aria-label={`${brandName} home`} className="flex shrink-0 items-center gap-3">
-            <span className={`flex h-11 w-11 items-center justify-center rounded-full text-lg font-bold transition-colors ${transparentHeader ? 'bg-white text-[#641E2D]' : 'bg-[#641E2D] text-white'}`}>
-              {branding.logoText || 'S'}
-            </span>
-            <span>
-              <span className={`block text-base font-semibold tracking-[0.16em] sm:text-lg ${transparentHeader ? 'text-white' : 'text-[#641E2D]'}`}>{brandName}</span>
-              <span className={`block text-xs uppercase tracking-[0.22em] ${transparentHeader ? 'text-white/75' : 'text-stone-500'}`}>{branding.logoSubtext || 'TEXTILE EXPORTS'}</span>
-            </span>
+          <Link to="/" aria-label={`${brandName} home`} className="flex shrink-0 items-center">
+            <img
+              src="/images/shreeji-impex-logo.webp"
+              alt={`${brandName} logo`}
+              width="1678"
+              height="480"
+              className="h-11 w-auto max-w-[164px] object-contain sm:h-[54px] sm:max-w-[210px]"
+            />
           </Link>
 
-          <nav aria-label="Main navigation" className="hidden items-center gap-1 md:flex">
+          <nav aria-label="Main navigation" className="ml-auto hidden items-center gap-1 md:flex">
             {navigation.map((item) => <NavLink key={item.to} to={item.to} className={navClass}>{item.label}</NavLink>)}
           </nav>
 
           <button
             type="button"
-            className={`ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full transition md:hidden ${transparentHeader ? 'text-white hover:bg-white/10' : 'text-[#641E2D] hover:bg-white/70'}`}
+            className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full text-[#005B63] transition hover:bg-[#005B63]/10 md:hidden"
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
@@ -134,10 +126,10 @@ export function Layout() {
         </div>
 
         {mobileMenuOpen && (
-          <nav id="mobile-navigation" aria-label="Mobile navigation" className="border-t border-stone-900/10 bg-[#F8F3E9] px-4 py-3 shadow-lg md:hidden">
+          <nav id="mobile-navigation" aria-label="Mobile navigation" className="border-t border-[#005B63]/10 bg-white px-4 py-3 shadow-lg md:hidden">
             <div className="mx-auto flex max-w-7xl flex-col">
               {navigation.map((item) => (
-                <NavLink key={item.to} to={item.to} className="rounded-lg px-4 py-3 text-base font-medium text-stone-700 hover:bg-white/70 hover:text-[#641E2D]">
+                <NavLink key={item.to} to={item.to} className="rounded-lg px-4 py-3 text-base font-medium text-[#17454A] hover:bg-[#005B63]/10 hover:text-[#005B63]">
                   {item.label}
                 </NavLink>
               ))}
@@ -173,30 +165,24 @@ export function Layout() {
 
           <section aria-labelledby="footer-products">
             <h2 id="footer-products" className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-white">Fabric Collections</h2>
-            {catalogError ? (
-              <p role="status" className="text-sm leading-6 text-stone-400">{catalogError}</p>
-            ) : (
-              <>
-                <ul className="space-y-3 text-sm text-stone-300">
-                  {categories.map((category) => (
-                    <li key={category._id}>
-                      <Link to={`/products/${encodeURIComponent(category.slug)}`} className="transition-colors hover:text-[#D6A747]">
-                        {category.name}
-                      </Link>
-                    </li>
-                  ))}
-                  {designs.map((design) => (
-                    <li key={design._id}>
-                      <Link to={`/designs/${encodeURIComponent(design.slug)}`} className="transition-colors hover:text-[#D6A747]">
-                        {design.name}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-                {categories.length === 0 && designs.length === 0 && (
-                  <p className="text-sm leading-6 text-stone-400">Published fabric collections will appear here.</p>
-                )}
-              </>
+            <ul className="space-y-3 text-sm text-stone-300">
+              {categories.map((category) => (
+                <li key={category._id}>
+                  <Link to={`/products/${encodeURIComponent(category.slug)}`} className="transition-colors hover:text-[#D6A747]">
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+              {designs.map((design) => (
+                <li key={design._id}>
+                  <Link to={`/designs/${encodeURIComponent(design.slug)}`} className="transition-colors hover:text-[#D6A747]">
+                    {design.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            {categories.length === 0 && designs.length === 0 && (
+              <p className="text-sm leading-6 text-stone-400">Published fabric collections will appear here.</p>
             )}
           </section>
 
